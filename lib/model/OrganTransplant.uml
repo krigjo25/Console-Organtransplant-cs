@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ArRMELIhEe-E74XbrfjF1g" name="OrganTransplant">
+  <packagedElement xmi:type="uml:Class" xmi:id="_BlAQcLIhEe-E74XbrfjF1g" name="Base" isAbstract="true">
+    <ownedAttribute xmi:id="_jPOi0LI2Ee-E74XbrfjF1g" name="List &lt;Person> patients;">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jPOi0bI2Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jPOi0rI2Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_q5PoMLI2Ee-E74XbrfjF1g" name="List &lt;Organ> AvailableOrgans">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q5PoMbI2Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q5PoMrI2Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_oUCjsLI6Ee-E74XbrfjF1g" name="PrintOperation"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CneaELIhEe-E74XbrfjF1g" name="Person">
+    <generalization xmi:id="_cr61kLIwEe-E74XbrfjF1g" general="_BlAQcLIhEe-E74XbrfjF1g"/>
+    <ownedAttribute xmi:id="_3fa7ALI1Ee-E74XbrfjF1g" name="string Name">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3fa7AbI1Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3fbiELI1Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_4nQFwLI1Ee-E74XbrfjF1g" name="int NIN">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4nQs0LI1Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4nQs0bI1Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_8vEPsLI1Ee-E74XbrfjF1g" name="string btype">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8vEPsbI1Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8vEPsrI1Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Ip_woLI2Ee-E74XbrfjF1g" name="char sex">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ip_wobI2Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ip_worI2Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_VdKhILI2Ee-E74XbrfjF1g" name="InitializeBtype"/>
+    <ownedOperation xmi:id="_DyLlwLI5Ee-E74XbrfjF1g" name="PushPerson"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_3aLdYLIvEe-E74XbrfjF1g" name="Organ">
+    <generalization xmi:id="_Yw5xgLIwEe-E74XbrfjF1g" general="_BlAQcLIhEe-E74XbrfjF1g"/>
+    <ownedAttribute xmi:id="_4518gLIzEe-E74XbrfjF1g" name="_name">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_452jkLIzEe-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_453KoLIzEe-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_cfO44LI6Ee-E74XbrfjF1g" name="string btype">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cfO44bI6Ee-E74XbrfjF1g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cfPf8LI6Ee-E74XbrfjF1g" value="1"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_Lrf9ULI3Ee-E74XbrfjF1g" name="bool IsMatch"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_WygY4LI1Ee-E74XbrfjF1g" name="string"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_no68YLI1Ee-E74XbrfjF1g" name="int"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_PD4OYLI3Ee-E74XbrfjF1g" name="Boolean"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ID9HgLI6Ee-E74XbrfjF1g" name="ConsoleApp"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_jthEgLI6Ee-E74XbrfjF1g" client="_ID9HgLI6Ee-E74XbrfjF1g" supplier="_BlAQcLIhEe-E74XbrfjF1g"/>
+</uml:Model>
