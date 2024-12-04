@@ -1,4 +1,4 @@
-﻿namespace Orgran_transplantation
+﻿namespace Organtransplant
 {
     class ConsoleApp
     {
