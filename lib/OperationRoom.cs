@@ -1,38 +1,89 @@
+using System.Linq.Expressions;
+
 namespace Organtransplant.lib;
 
-public class OperationRoom : Organs, PatientData
+public class DataCollection
 {
-    List<Organs> AvailableOrgans = [];
-    List<PatientData> patients = [];
+    private readonly List<Patient> _donorData = [];
+    private readonly List<Organ> _availableOrgans = [];
+    public readonly List<Patient> PatientsData = [];
 
-    protected OperationRoom()
-        {
+    protected void PushDonorData(Patient donorData)
+    {
+        _donorData.Add(donorData);
+    }
 
-            InitializeOrgrans(new Organs(organs));
-            PrintOperation();
-            
-        }
-        
+    protected void PushOrgansData(Organ organsData)
+    {
+        _availableOrgans.Add(organsData);
+    }
 
-        private void Transplant_organs()
+    public void PrintDonorList()
+    {
+        Console.WriteLine("Available Donors:");
+        foreach (var donor in _donorData)
         {
-            // Transplant the organs
+            Console.WriteLine($"{donor.Name}, {donor.IsDonor}");
+            if (donor.IsDonor & !donor.Hospitalized)
+            {
+                Console.WriteLine($"Name : {donor.Name}, BloodType: {donor.BloodType}");
+            }
         }
-        private void InitializePatient(PatientData patient)
+    }
+    
+    public void PrintPatient()
+    {
+        Console.WriteLine("Available Donors:");
+        foreach (var donor in _donorData)
         {
-            // Initialize the patient
-            patients.Add(patient);
+            if (donor.Hospitalized)
+            {
+                Console.WriteLine($"Name : {donor.Name}, NationalID : {donor.NIN}, BloodType: {donor.BloodType}");
+            }
         }
-        private void InitializeOrgrans(Organs orgran)
-        {
-            // Initialize the orgran
-            AvailableOrgans.Add(orgran);
-        }
-        public void PrintOperation()
-        {
-            
-            // Print the operation
-         
-        }
+    }
+    
+    public void PrintAvailableOrgans()
+    {
+        Console.WriteLine("Available Organs:");
 
+        foreach (var organ in _availableOrgans)
+        {
+            Console.WriteLine($"Organ : {organ.Name}, BloodType: {organ.BloodType}");
+        }
+    }
+
+    public void ReplayTranslpant()
+    {
+        // Simulate an operation
+        throw new NotImplementedException();
+    }
+
+    public void InitializeDonorData()
+    {
+        var r = new Random();
+
+        string[] arg = ["03071977", "03061957", "8191970", "02051992", "18111963", "14092009", "15081961", "28041983"];
+        _donorData.Add(new Patient("Leslie H Burke", 'F', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Tina D Woodcock", 'F', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Ernesto S Sparrow", 'M', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Roger I. Dreyer", 'M', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Erling Brenna", 'M', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Iris Pedersen", 'F', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Hana Brattli", 'F', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}"));
+        _donorData.Add(new Patient("Max Østlie", 'M', $"{arg[r.Next(arg.Length)]}{r.Next(1000, 9999)}", true));
+    }
+
+    public void InitalizeOrganData()
+    {
+        var r = new Random();
+        string[] arg = ["Heart", "kidney", "Brain", "Stomack"];
+        string[] bt = ["A+", "A-", "AB+", "AB-", "B+", "B-", "O-", "O+"];
+        foreach (var element in arg)
+        {
+            _availableOrgans.Add(new Organ(element, bt[r.Next(bt.Length)]));
+        }
+    }
 }
+
+    

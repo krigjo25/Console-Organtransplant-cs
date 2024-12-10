@@ -1,54 +1,65 @@
+using System.Text.RegularExpressions;
+
 namespace Organtransplant.lib;
 
-public class Organs
+public class Organ : DataCollection
 {
-    
+    private int _sum;
     private string _name;
-    private string _type;
     private string _bloodType;
-    
-    private protected string Name 
+
+
+    public string Name 
     {   
         get => _name;
         set => _name = value;
     }
 
-    private string Type
-    {
-        get => _type;
-        set => _type = value;
-    }
-
-    private string BloodType
+    public string BloodType
     {
         get => _bloodType;
         set
         {
-            string[] bt = ["A", "B", "AB", "O"];
+            //  Blood type accepts A or B  or 0 with + or - 
+            const string match = @"^([AB0][\+|-])|(A+B[\+|2-])$";
+            Regex rgx = new(match);
 
-            foreach (var element in bt)
+            if (rgx.IsMatch(value))
             {
-                if (element == value)
-                {
-                    _bloodType = value;
-                }
-                else
-                {
-                    throw new Exception("Invalid Blood Type");
-                }
-                
+                _bloodType = value;
             }
         }
     }
 
-    public Organs(string[] arg)
+    protected int Sum
     {
-        Name = arg[0];
-        Type = arg[1];
-        BloodType = arg[2];
-        
+        get => _sum;
+        set => _sum = value;
     }
-    
 
+    public Organ(string name, string bloodType, int sum = 1)
+    {
+        Sum = sum;
+        Name = name;
+        BloodType = bloodType;
+        
+        PushOrgansData(this);
+    }
+
+    internal bool IsPatientMatch(List<Patient> donor, List<Patient> patients)
+    {
+        return donor.Any(element => patients.Any(patient => patient.Name != element.Name && BloodTypeMatch(element.BloodType, patient.BloodType)));
+    }
+
+    private bool BloodTypeMatch(string arg, string arg1)
+    {
+        // Ensures that the BloodType Matches
+        return (arg.Equals(arg1) || arg == "0-" || arg1 == "AB+");
+    }
+    bool IsOrganMatch()
+    {
+        // filter people by organ donor
+        return false;
+    }
     
 }
