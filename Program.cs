@@ -1,7 +1,7 @@
 ﻿using Organtransplant.lib;
 namespace Organtransplant
 {
-    class CApp
+    class ConsoleApp
     {
         
         
