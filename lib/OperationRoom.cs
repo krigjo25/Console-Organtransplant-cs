@@ -4,7 +4,7 @@ namespace Organtransplant.lib;
 
 public class DataCollection
 {
-    public readonly List<Patient> PatientsData = [];
+    private readonly List<Patient> PatientsData = [];
     
     private readonly List<Patient> _donorData = [];
     private readonly List<Organ> _availableOrgans = [];
