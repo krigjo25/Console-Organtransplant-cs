@@ -4,15 +4,20 @@ namespace Organtransplant.lib;
 
 public class DataCollection
 {
+    public readonly List<Patient> PatientsData = [];
+    
     private readonly List<Patient> _donorData = [];
     private readonly List<Organ> _availableOrgans = [];
-    public readonly List<Patient> PatientsData = [];
 
     protected void PushDonorData(Patient donorData)
     {
         _donorData.Add(donorData);
     }
 
+    protected void PushPatientData(Patient patient)
+    {
+        PatientsData.Add(patient);
+    }
     protected void PushOrgansData(Organ organsData)
     {
         _availableOrgans.Add(organsData);
@@ -20,12 +25,13 @@ public class DataCollection
 
     public void PrintDonorList()
     {
+        Console.Clear();
         Console.WriteLine("Available Donors:");
         foreach (var donor in _donorData)
         {
-            Console.WriteLine($"{donor.Name}, {donor.IsDonor}");
             if (donor.IsDonor & !donor.Hospitalized)
             {
+                
                 Console.WriteLine($"Name : {donor.Name}, BloodType: {donor.BloodType}");
             }
         }
@@ -33,31 +39,60 @@ public class DataCollection
     
     public void PrintPatient()
     {
-        Console.WriteLine("Available Donors:");
+        Console.Clear();
+        Console.WriteLine("Patient :");
         foreach (var donor in _donorData)
         {
             if (donor.Hospitalized)
             {
+                
+                
                 Console.WriteLine($"Name : {donor.Name}, NationalID : {donor.NIN}, BloodType: {donor.BloodType}");
             }
         }
     }
-    
+   
     public void PrintAvailableOrgans()
     {
+        Console.Clear();
         Console.WriteLine("Available Organs:");
 
         foreach (var organ in _availableOrgans)
         {
+            
             Console.WriteLine($"Organ : {organ.Name}, BloodType: {organ.BloodType}");
         }
     }
 
     public void ReplayTranslpant()
     {
+        Console.Clear();
+        Console.WriteLine("A simulation of an Orgran Translpant");
         // Simulate an operation
-        throw new NotImplementedException();
+        
+        Patient patient = null;
+
+        foreach (var donor in _donorData)
+        {
+            
+            if (donor.Hospitalized)
+            {
+                patient = donor;
+            }
+            
+        }
+        foreach (var donor in _donorData)
+        {
+            if (!donor.Hospitalized && donor.IsDonor && Organ.BloodTypeMatch(donor.BloodType, patient.BloodType))
+            {
+                Console.WriteLine($"Matching Donor : {donor.Name}, BloodType: {donor.BloodType}");
+            }
+            
+        }
+        
+
     }
+    
 
     public void InitializeDonorData()
     {
@@ -81,9 +116,10 @@ public class DataCollection
         string[] bt = ["A+", "A-", "AB+", "AB-", "B+", "B-", "O-", "O+"];
         foreach (var element in arg)
         {
-            _availableOrgans.Add(new Organ(element, bt[r.Next(bt.Length)]));
+            
+            _availableOrgans.Add(new Organ(element, bt[r.Next(bt.Length-1)]));
         }
     }
+    
 }
-
     

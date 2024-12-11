@@ -21,7 +21,8 @@ public class Organ : DataCollection
         set
         {
             //  Blood type accepts A or B  or 0 with + or - 
-            const string match = @"^([AB0][\+|-])|(A+B[\+|2-])$";
+            Console.WriteLine("Organs bloodtype " + value);
+            const string match = @"^([A|B|0][\+|-])|(A+B[\+|2-])$";
             Regex rgx = new(match);
 
             if (rgx.IsMatch(value))
@@ -42,23 +43,30 @@ public class Organ : DataCollection
         Sum = sum;
         Name = name;
         BloodType = bloodType;
-        
+        Console.WriteLine("Organs:" + BloodType);
         PushOrgansData(this);
     }
 
-    internal bool IsPatientMatch(List<Patient> donor, List<Patient> patients)
+    internal static bool IsPatientMatch(List<Patient> donor, List<Patient> patients)
     {
         return donor.Any(element => patients.Any(patient => patient.Name != element.Name && BloodTypeMatch(element.BloodType, patient.BloodType)));
     }
 
-    private bool BloodTypeMatch(string arg, string arg1)
+    internal static bool BloodTypeMatch(string arg, string arg1)
     {
         // Ensures that the BloodType Matches
-        return (arg.Equals(arg1) || arg == "0-" || arg1 == "AB+");
+        if (arg == arg1 || arg1 == "AB+")
+        {
+            return true;
+
+        }
+
+        return false;
     }
-    bool IsOrganMatch()
+
+    internal bool IsOrganMatch()
     {
-        // filter people by organ donor
+        
         return false;
     }
     

@@ -53,8 +53,6 @@ public class Patient : DataCollection
         Hospitalized = hospitalized;
         BloodType = InitializeBloodType();
         IsDonor = (0 != r.Next(0, 2));
-        
-        PushDonorData(this);
     }
 
     private void MustTransplant()
