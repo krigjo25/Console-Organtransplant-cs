@@ -2,7 +2,7 @@
 
 This is a basic Organ Transplant Simulator to match given patients
 with a given Organ. An assignment for getAcademy's moodle.
-The project was created as a part of an assignment for [Get Academy](getacademy.no)
+The project was created as a part of an assignment for [Get Academy](https://getacademy.no)
 Please respect and keep the [Academic Honesty Integerty](https://ctl.columbia.edu/resources-and-technology/resources/academic-integrity/) in mind.
 
 ## Features
